@@ -14,7 +14,6 @@
       <Folder Include="DTOs\Apartments\" />
       <Folder Include="DTOs\CottageBlockParts\" />
       <Folder Include="DTOs\CottageBlocks\" />
-      <Folder Include="DTOs\Cottages\" />
       <Folder Include="DTOs\UserProfiles\" />
     </ItemGroup>
 
