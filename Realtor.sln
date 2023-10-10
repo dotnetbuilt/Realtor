@@ -4,6 +4,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EAFD44-B75
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Realtor.WebApi", "src\Realtor.WebApi\Realtor.WebApi.csproj", "{0F042638-F3B2-476A-8797-F1EDB13642C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Realtor.Domain", "src\Realtor.Domain\Realtor.Domain.csproj", "{D99D1ACD-2E95-4A4D-AB5D-6AFC0D8C1601}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,8 +16,13 @@ Global
 		{0F042638-F3B2-476A-8797-F1EDB13642C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F042638-F3B2-476A-8797-F1EDB13642C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F042638-F3B2-476A-8797-F1EDB13642C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D99D1ACD-2E95-4A4D-AB5D-6AFC0D8C1601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D99D1ACD-2E95-4A4D-AB5D-6AFC0D8C1601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D99D1ACD-2E95-4A4D-AB5D-6AFC0D8C1601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D99D1ACD-2E95-4A4D-AB5D-6AFC0D8C1601}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0F042638-F3B2-476A-8797-F1EDB13642C4} = {02EAFD44-B75C-4484-9CBE-2FCD1C6E4F50}
+		{D99D1ACD-2E95-4A4D-AB5D-6AFC0D8C1601} = {02EAFD44-B75C-4484-9CBE-2FCD1C6E4F50}
 	EndGlobalSection
 EndGlobal
