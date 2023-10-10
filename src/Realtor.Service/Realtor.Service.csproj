@@ -8,9 +8,6 @@
 
 
 
-    <ItemGroup>
-      <Folder Include="DTOs\UserProfiles\" />
-    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Realtor.Data\Realtor.Data.csproj" />
