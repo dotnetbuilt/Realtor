@@ -16,7 +16,11 @@
       <Folder Include="DTOs\CottageBlocks\" />
       <Folder Include="DTOs\Cottages\" />
       <Folder Include="DTOs\UserProfiles\" />
-      <Folder Include="DTOs\Users\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Realtor.Data\Realtor.Data.csproj" />
+      <ProjectReference Include="..\Realtor.Domain\Realtor.Domain.csproj" />
     </ItemGroup>
 
 </Project>
