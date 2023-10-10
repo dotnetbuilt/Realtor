@@ -19,4 +19,6 @@
       <ProjectReference Include="..\Realtor.Domain\Realtor.Domain.csproj" />
     </ItemGroup>
 
+
+
 </Project>
