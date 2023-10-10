@@ -9,7 +9,6 @@
 
 
     <ItemGroup>
-      <Folder Include="DTOs\ApartmentBlocks\" />
       <Folder Include="DTOs\UserProfiles\" />
     </ItemGroup>
 
