@@ -8,4 +8,18 @@
 
 
 
+    <ItemGroup>
+      <Folder Include="DTOs\Addresses\" />
+      <Folder Include="DTOs\ApartmentBlockParts\" />
+      <Folder Include="DTOs\ApartmentBlocks\" />
+      <Folder Include="DTOs\Apartments\" />
+      <Folder Include="DTOs\CottageBlockParts\" />
+      <Folder Include="DTOs\CottageBlocks\" />
+      <Folder Include="DTOs\Cottages\" />
+      <Folder Include="DTOs\Districts\" />
+      <Folder Include="DTOs\Neighborhoods\" />
+      <Folder Include="DTOs\UserProfiles\" />
+      <Folder Include="DTOs\Users\" />
+    </ItemGroup>
+
 </Project>
