@@ -6,6 +6,6 @@ public class Phone:Auditable
 {
     public string Number { get; set; }
 
-    public long UserProfileId { get; set; }
-    public UserProfile Type { get; set; }
+    public long UserId { get; set; }
+    public User User { get; set; }
 }

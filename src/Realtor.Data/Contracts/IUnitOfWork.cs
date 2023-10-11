@@ -5,7 +5,6 @@ namespace Realtor.Data.Contracts;
 public interface IUnitOfWork:IDisposable
 {
     IRepository<User> UserRepository { get; }
-    IRepository<UserProfile> UserProfileRepository { get; }
     IRepository<Attachment> AttachmentRepository { get; }
     IRepository<Address> AddressRepository { get; }
     IRepository<Country> CountryRepository { get; }

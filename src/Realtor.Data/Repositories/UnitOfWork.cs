@@ -12,7 +12,6 @@ public class UnitOfWork:IUnitOfWork
     {
         _context = context;
         UserRepository = new Repository<User>(_context);
-        UserProfileRepository = new Repository<UserProfile>(_context);
         AttachmentRepository = new Repository<Attachment>(_context);
         AddressRepository = new Repository<Address>(_context);
         CountryRepository = new Repository<Country>(_context);
@@ -31,7 +30,6 @@ public class UnitOfWork:IUnitOfWork
     }
 
     public IRepository<User> UserRepository { get; }
-    public IRepository<UserProfile> UserProfileRepository { get; }
     public IRepository<Attachment> AttachmentRepository { get; }
     public IRepository<Address> AddressRepository { get; }
     public IRepository<Country> CountryRepository { get; }
