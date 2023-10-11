@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Realtor.Data.Contexts;
 using Realtor.WebApi.Extensions;

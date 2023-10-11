@@ -20,7 +20,7 @@ public class AddressesController:BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = _service.AddAsync(dto)
+            Data = await _service.AddAsync(dto)
         });
     
     
@@ -30,7 +30,7 @@ public class AddressesController:BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = _service.ModifyAsync(dto)
+            Data = await _service.ModifyAsync(dto)
         });
     
     [HttpDelete("delete")]
@@ -39,7 +39,7 @@ public class AddressesController:BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = _service.RemoveAsync(addressId)
+            Data = await _service.RemoveAsync(addressId)
         });
 
     [HttpDelete("destroy")]
@@ -48,7 +48,7 @@ public class AddressesController:BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = _service.EraseAsync(addressId)
+            Data = await _service.EraseAsync(addressId)
         });
     
     [HttpGet("get-by-id")]
@@ -57,7 +57,7 @@ public class AddressesController:BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = _service.RetrieveByIdAsync(addressId)
+            Data = await _service.RetrieveByIdAsync(addressId)
         });
     
     [HttpGet("get-all")]
@@ -66,6 +66,6 @@ public class AddressesController:BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = _service.RetrieveAllAsync()
+            Data = await _service.RetrieveAllAsync()
         });
 }

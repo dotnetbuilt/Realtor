@@ -1,12 +1,11 @@
-using System.Runtime.Intrinsics.X86;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Realtor.Data.Contracts;
 using Realtor.Data.Repositories;
-using Realtor.Domain.Entities;
 using Realtor.Service.Interfaces;
+using Realtor.Service.Mappers;
 using Realtor.Service.Services;
 
 namespace Realtor.WebApi.Extensions;
@@ -34,6 +33,7 @@ public static class ServiceExtension
         services.AddScoped<ICottageService, CottageService>();
         services.AddScoped<ICottageBlockService, CottageBlockService>();
         services.AddScoped<ICottageBlockPartService, CottageBlockPartService>();
+        services.AddAutoMapper(typeof(MappingProfile));
     }
     
     public static void AddJwt(this IServiceCollection services, IConfiguration configuration)

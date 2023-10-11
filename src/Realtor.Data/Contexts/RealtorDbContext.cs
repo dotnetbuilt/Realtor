@@ -1,7 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Realtor.Domain.Entities;
-using Attachment = System.Net.Mail.Attachment;
-using Property = Microsoft.EntityFrameworkCore.Metadata.Internal.Property;
 
 namespace Realtor.Data.Contexts;
 

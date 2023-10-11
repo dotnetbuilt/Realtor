@@ -14,50 +14,50 @@ public class ExceptionHandlerMiddleware
         _logger = logger;
     }
 
-    public async Task Invoke(HttpContext _context)
+    public async Task Invoke(HttpContext context)
     {
         try
         {
-            _request.Invoke(_context);
+            _request.Invoke(context);
         }
         catch (NotFoundException exception)
         {
-            _context.Response.StatusCode = exception.StatusCode;
+            context.Response.StatusCode = exception.StatusCode;
 
-            await _context.Response.WriteAsJsonAsync(new Responce()
+            await context.Response.WriteAsJsonAsync(new Responce()
             {
-                StatusCode = _context.Response.StatusCode,
+                StatusCode = context.Response.StatusCode,
                 Message = exception.Message
             });
         }
         catch (AlreadyExistsException exception)
         {
-            _context.Response.StatusCode = exception.StatusCode;
+            context.Response.StatusCode = exception.StatusCode;
 
-            await _context.Response.WriteAsJsonAsync(new Responce()
+            await context.Response.WriteAsJsonAsync(new Responce()
             {
-                StatusCode = _context.Response.StatusCode,
+                StatusCode = context.Response.StatusCode,
                 Message = exception.Message
             });
         }
         catch (CustomException exception)
         {
-            _context.Response.StatusCode = exception.StatusCode;
+            context.Response.StatusCode = exception.StatusCode;
 
-            await _context.Response.WriteAsJsonAsync(new Responce()
+            await context.Response.WriteAsJsonAsync(new Responce()
             {
-                StatusCode = _context.Response.StatusCode,
+                StatusCode = context.Response.StatusCode,
                 Message = exception.Message
             });
         }
         catch (Exception exception)
         {
-            _context.Response.StatusCode = 500;
+            context.Response.StatusCode = 500;
             _logger.LogError(message:exception.ToString());
 
-            await _context.Response.WriteAsJsonAsync(new Responce()
+            await context.Response.WriteAsJsonAsync(new Responce()
             {
-                StatusCode = _context.Response.StatusCode,
+                StatusCode = context.Response.StatusCode,
                 Message = exception.Message
             });
         }
