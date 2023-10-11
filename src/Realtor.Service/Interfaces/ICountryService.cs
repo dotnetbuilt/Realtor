@@ -6,8 +6,8 @@ public interface ICountryService
 {
     ValueTask<CountryResultDto> AddAsync(CountryCreationDto dto);
     ValueTask<CountryResultDto> ModifyAsync(CountryUpdateDto dto);
-    ValueTask<bool> RemoveAsync(Guid id);
-    ValueTask<bool> EraseAsync(Guid id);
-    ValueTask<CountryResultDto> RetrieveByIdAsync(Guid id);
+    ValueTask<bool> RemoveAsync(long id);
+    ValueTask<bool> EraseAsync(long id);
+    ValueTask<CountryResultDto> RetrieveByIdAsync(long id);
     ValueTask<IEnumerable<CountryResultDto>> RetrieveAllAsync();
 }
