@@ -6,8 +6,8 @@ public interface IRegionService
 {
     ValueTask<RegionResultDto> AddAsync(RegionCreationDto dto);
     ValueTask<RegionResultDto> ModifyAsync(RegionUpdateDto dto);
-    ValueTask<bool> RemoveAsync(Guid id);
-    ValueTask<bool> EraseAsync(Guid id);
-    ValueTask<RegionResultDto> RetrieveByIdAsync(Guid id);
+    ValueTask<bool> RemoveAsync(long id);
+    ValueTask<bool> EraseAsync(long id);
+    ValueTask<RegionResultDto> RetrieveByIdAsync(long id);
     ValueTask<IEnumerable<RegionResultDto>> RetrieveAllAsync();
 }
