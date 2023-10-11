@@ -6,6 +6,6 @@ public interface ICottageBlockPartService
 {
     ValueTask<CottageBlockPartResultDto> AddAsync(CottageBlockPartCreationDto dto);
     ValueTask<CottageBlockPartResultDto> ModifyAsync(CottageBlockPartUpdateDto dto);
-    ValueTask<bool> RemoveAsync(Guid id);
-    ValueTask<CottageBlockPartResultDto> RetrieveByIdAsync(Guid id);
+    ValueTask<bool> RemoveAsync(long id);
+    ValueTask<CottageBlockPartResultDto> RetrieveByIdAsync(long id);
 }
