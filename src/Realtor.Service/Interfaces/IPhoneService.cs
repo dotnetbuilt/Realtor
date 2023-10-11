@@ -5,6 +5,6 @@ namespace Realtor.Service.Interfaces;
 public interface IPhoneService
 {
     ValueTask<PhoneResultDto> AddAsync(PhoneCreationDto dto);
-    ValueTask<bool> RemoveAsync(Guid id);
-    ValueTask<PhoneResultDto> RetrieveByIdAsync(Guid id);
+    ValueTask<bool> RemoveAsync(long id);
+    ValueTask<PhoneResultDto> RetrieveByIdAsync(long id);
 }
