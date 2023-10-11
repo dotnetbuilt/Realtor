@@ -18,10 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Realtor.Data\Realtor.Data.csproj" />
       <ProjectReference Include="..\Realtor.Domain\Realtor.Domain.csproj" />
       <ProjectReference Include="..\Realtor.Service\Realtor.Service.csproj" />
