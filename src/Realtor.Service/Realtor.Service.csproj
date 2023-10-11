@@ -14,4 +14,31 @@
       <ProjectReference Include="..\Realtor.Domain\Realtor.Domain.csproj" />
     </ItemGroup>
 
+
+
+
+
+
+
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    </ItemGroup>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </Project>
