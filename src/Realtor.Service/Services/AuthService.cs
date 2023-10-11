@@ -24,27 +24,9 @@ public class AuthService:IAuthService
         _unitOfWork = unitOfWork;
     }
 
-    public string GetUserIdFromToken(string token)
+    public async Task<string> GenerateAndCacheTokenAsyncByEmail(string phoneNumber, string password)
     {
-        var tokenhandler = new JwtSecurityTokenHandler();
-
-        if (tokenhandler.CanReadToken(token))
-        {
-            var jwtToken = tokenhandler.ReadJwtToken(token);
-            var idClaim = jwtToken.Claims.FirstOrDefault(claim => claim.Type == "Id");
-
-            if (idClaim != null)
-            {
-                return idClaim.Value;
-            }
-        }
-
-        return null;
-    }
-
-    public async Task<string> GenerateAndCacheTokenAsyncByEmail(string email, string password)
-    {
-        var user = await _unitOfWork.UserRepository.SelectAsync(expression: u => u.Email == email)
+        var user = await _unitOfWork.UserRepository.SelectAsync(expression: u => u.PhoneNumber == phoneNumber)
                    ?? throw new NotFoundException(message: "UserNotFound");
 
         bool isPasswordVerified = password.Verify(user.Password);
@@ -58,7 +40,7 @@ public class AuthService:IAuthService
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-                new Claim("Email", user.Email),
+                new Claim("Email", user.PhoneNumber),
                 new Claim("Id", user.Id.ToString()),
                 new Claim(ClaimTypes.Role, user.Role.ToString())
             }),

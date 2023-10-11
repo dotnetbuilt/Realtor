@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Realtor.Domain.Configurations;
 using Realtor.Service.DTOs.Users;
@@ -16,6 +17,7 @@ public class UsersController:BaseController
     }
 
     [HttpPost("register")]
+    [AllowAnonymous]
     public async ValueTask<IActionResult> CreateAsync(UserCreationDto dto)
         => Ok(new Responce()
         {
