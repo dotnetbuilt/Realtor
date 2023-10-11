@@ -11,7 +11,6 @@ public class RealtorDbContext:DbContext
     }
     
     public DbSet<User> Users { get; set; }
-    public DbSet<UserProfile> UserProfiles { get; set; }
     public DbSet<Attachment> Attachments { get; set; }
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Country> Countries { get; set; }
@@ -27,18 +26,4 @@ public class RealtorDbContext:DbContext
     public DbSet<Link> Links { get; set; }
     public DbSet<Phone> Phones { get; set; }
     public DbSet<Property> Properties { get; set; }
-    
-    
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<User>()
-            .HasOne(a => a.UserProfile)
-            .WithOne(c => c.User)
-            .HasForeignKey<User>(a => a.UserProfileId);
-
-        modelBuilder.Entity<UserProfile>()
-            .HasOne(a => a.User)
-            .WithOne(c => c.UserProfile)
-            .HasForeignKey<UserProfile>(a => a.UserId);
-    }
 }

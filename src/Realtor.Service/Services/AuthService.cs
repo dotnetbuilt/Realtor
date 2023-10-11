@@ -40,7 +40,7 @@ public class AuthService:IAuthService
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-                new Claim("Email", user.PhoneNumber),
+                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
                 new Claim("Id", user.Id.ToString()),
                 new Claim(ClaimTypes.Role, user.Role.ToString())
             }),
