@@ -32,6 +32,7 @@ public class UserService:IUserService
             throw new AlreadyExistsException(message: "User is Already exist!");
 
         var mappedUser = _mapper.Map<User>(source:dto);
+        mappedUser.Password.Hash();
 
         await _unitOfWork.UserRepository.CreateAsync(entity: mappedUser);
         await _unitOfWork.SaveAsync();
