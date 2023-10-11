@@ -6,6 +6,6 @@ public interface IApartmentBlockPartService
 {
     ValueTask<ApartmentBlockPartResultDto> AddAsync(ApartmentBlockPartCreationDto dto);
     ValueTask<ApartmentBlockPartResultDto> ModifyAsync(ApartmentBlockPartUpdateDto dto);
-    ValueTask<bool> RemoveAsync(Guid id);
-    ValueTask<ApartmentBlockPartResultDto> RetrieveByIdAsync(Guid id);
+    ValueTask<bool> RemoveAsync(long id);
+    ValueTask<ApartmentBlockPartResultDto> RetrieveByIdAsync(long id);
 }
