@@ -24,7 +24,7 @@ public class AuthService:IAuthService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<string> GenerateAndCacheTokenAsyncByEmail(string phoneNumber, string password)
+    public async Task<string> GenerateAndCacheTokenAsyncByPhone(string phoneNumber, string password)
     {
         var user = await _unitOfWork.UserRepository.SelectAsync(expression: u => u.PhoneNumber == phoneNumber)
                    ?? throw new NotFoundException(message: "UserNotFound");
