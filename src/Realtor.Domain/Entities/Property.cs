@@ -12,5 +12,4 @@ public class Property:Auditable
     public Material WallMadeOf { get; set; }
     public DateOnly BuiltIn { get; set; }
     public DateOnly SubmissionDate { get; set; }
-    public string ResidentialComplexName { get; set; }
 }

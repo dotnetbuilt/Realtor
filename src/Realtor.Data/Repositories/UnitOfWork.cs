@@ -8,25 +8,33 @@ public class UnitOfWork:IUnitOfWork
 {
     private readonly RealtorDbContext _context;
 
-    public UnitOfWork(RealtorDbContext context)
+    public UnitOfWork(RealtorDbContext context, IRepository<User> userRepository,
+        IRepository<Attachment> attachmentRepository, IRepository<Address> addressRepository, 
+        IRepository<Country> countryRepository, IRepository<Region> regionRepository, 
+        IRepository<District> districtRepository, IRepository<Apartment> apartmentRepository, 
+        IRepository<ApartmentBlock> apartmentBlockRepository, IRepository<ApartmentBlockPart> apartmentBlockPartRepository,
+        IRepository<Cottage> cottageRepository, IRepository<CottageBlock> cottageBlockRepository,
+        IRepository<CottageBlockPart> cottageBlockPartRepository, IRepository<Property> propertyRepository, 
+        IRepository<Link> linkRepository, IRepository<Phone> phoneRepository, 
+        IRepository<Neighborhood> neighborhoodRepository)
     {
         _context = context;
-        UserRepository = new Repository<User>(_context);
-        AttachmentRepository = new Repository<Attachment>(_context);
-        AddressRepository = new Repository<Address>(_context);
-        CountryRepository = new Repository<Country>(_context);
-        RegionRepository = new Repository<Region>(_context);
-        DistrictRepository = new Repository<District>(_context);
-        NeighborhoodRepository = new Repository<Neighborhood>(_context);
-        ApartmentRepository = new Repository<Apartment>(_context);
-        ApartmentBlockRepository = new Repository<ApartmentBlock>(_context);
-        ApartmentBlockPartRepository = new Repository<ApartmentBlockPart>(_context);
-        CottageRepository = new Repository<Cottage>(_context);
-        CottageBlockRepository = new Repository<CottageBlock>(_context);
-        CottageBlockPartRepository = new Repository<CottageBlockPart>(_context);
-        PropertyRepository = new Repository<Property>(_context);
-        LinkRepository = new Repository<Link>(_context);
-        PhoneRepository = new Repository<Phone>(_context);
+        UserRepository = userRepository;
+        AttachmentRepository = attachmentRepository;
+        AddressRepository = addressRepository;
+        CountryRepository = countryRepository;
+        RegionRepository = regionRepository;
+        DistrictRepository = districtRepository;
+        ApartmentRepository = apartmentRepository;
+        ApartmentBlockRepository = apartmentBlockRepository;
+        ApartmentBlockPartRepository = apartmentBlockPartRepository;
+        CottageRepository = cottageRepository;
+        CottageBlockRepository = cottageBlockRepository;
+        CottageBlockPartRepository = cottageBlockPartRepository;
+        PropertyRepository = propertyRepository;
+        LinkRepository = linkRepository;
+        PhoneRepository = phoneRepository;
+        NeighborhoodRepository = neighborhoodRepository;
     }
 
     public IRepository<User> UserRepository { get; }
@@ -45,7 +53,11 @@ public class UnitOfWork:IUnitOfWork
     public IRepository<Link> LinkRepository { get; }
     public IRepository<Phone> PhoneRepository { get; }
     public IRepository<Neighborhood> NeighborhoodRepository { get; }
-    public async ValueTask SaveAsync() => await _context.SaveChangesAsync();
+
+    public async ValueTask SaveAsync()
+    {
+        await _context.SaveChangesAsync();  
+    } 
 
     public void Dispose()
     {

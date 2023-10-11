@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using Realtor.Domain.Commons;
 using Realtor.Domain.Enums;
 

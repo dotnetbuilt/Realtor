@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Realtor.Data.Contracts;
 using Realtor.Domain.Configurations;
 using Realtor.Domain.Entities;
-using Realtor.Domain.Enums;
-using Realtor.Service.DTOs.UserProfiles;
 using Realtor.Service.DTOs.Users;
 using Realtor.Service.Exceptions;
 using Realtor.Service.Extensions;

@@ -9,9 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
 
 //DbContext
 builder.Services.AddDbContext<RealtorDbContext>(options =>
@@ -22,8 +20,8 @@ builder.Services.AddDbContext<RealtorDbContext>(options =>
 //JWT
 builder.Services.AddJwt(builder.Configuration);
 
-//Swagger Setup
-builder.Services.ConfigureSwagger();
+// //Swagger Setup
+// builder.Services.ConfigureSwagger();
 
 //Logger (Serilog)
 var logger = new LoggerConfiguration()
@@ -34,6 +32,9 @@ builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
 
 
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 

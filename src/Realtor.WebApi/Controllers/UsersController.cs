@@ -17,7 +17,6 @@ public class UsersController:BaseController
     }
 
     [HttpPost("register")]
-    [AllowAnonymous]
     public async ValueTask<IActionResult> CreateAsync(UserCreationDto dto)
         => Ok(new Responce()
         {

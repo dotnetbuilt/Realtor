@@ -5,7 +5,7 @@ namespace Realtor.Service.DTOs.Cottages;
 
 public class CottageCreationDto
 {
-    public Guid PropertyId { get; set; }
+    public long PropertyId { get; set; }
     public int NumberOfFloors { get; set; }
     public int NumberOfRooms { get; set; }
     public decimal Cost { get; set; }
@@ -15,6 +15,6 @@ public class CottageCreationDto
     public long UsageArea { get; set; }
     public AreaUnit UsageAreaUnit { get; set; }
     public ICollection<Attachment> Attachments { get; set; }
-    public Guid UserProfileId { get; set; }
-    public Guid AddressId { get; set; }
+    public long UserId { get; set; }
+    public long AddressId { get; set; }
 }

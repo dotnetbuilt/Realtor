@@ -14,7 +14,6 @@ using Realtor.Service.DTOs.Neighborhoods;
 using Realtor.Service.DTOs.Phones;
 using Realtor.Service.DTOs.Properties;
 using Realtor.Service.DTOs.Regions;
-using Realtor.Service.DTOs.UserProfiles;
 using Realtor.Service.DTOs.Users;
 
 namespace Realtor.Service.Mappers;
@@ -23,12 +22,12 @@ public class MappingProfile:Profile
 {
     public MappingProfile()
     {
-        //User
-        CreateMap<User, UserCreationDto>().ReverseMap();
-        CreateMap<User, UserUpdateDto>().ReverseMap();
-        CreateMap<User, UserResultDto>().ReverseMap();
+            //User
+            CreateMap<User, UserCreationDto>().ReverseMap();
+            CreateMap<User, UserUpdateDto>().ReverseMap();
+            CreateMap<User, UserResultDto>().ReverseMap();
     
-        //Address
+            //Address
             CreateMap<Address, AddressUpdateDto>().ReverseMap();
             CreateMap<Address, AddressCreationDto>().ReverseMap();
             CreateMap<Address, AddressResultDto>().ReverseMap();

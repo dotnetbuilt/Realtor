@@ -8,7 +8,7 @@ namespace Realtor.Service.DTOs.Cottages;
 
 public class CottageResultDto
 {
-    public Guid Id { get; set; }
+    public long Id { get; set; }
     public PropertyResultDto PropertyResultDto { get; set; }
     public int NumberOfFloors { get; set; }
     public int NumberOfRooms { get; set; }
