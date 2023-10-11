@@ -9,4 +9,5 @@ public class ApartmentBlockPartCreationDto
     public AreaUnit UsageAreaUnit { get; set; }
     public decimal Cost { get; set; }
     public Currency Currency { get; set; }
+    public long ApartmentBlockId { get; set; }
 }

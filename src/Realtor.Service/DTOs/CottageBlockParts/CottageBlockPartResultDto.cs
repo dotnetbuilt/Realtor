@@ -1,4 +1,5 @@
 using Realtor.Domain.Enums;
+using Realtor.Service.DTOs.CottageBlocks;
 
 namespace Realtor.Service.DTOs.CottageBlockParts;
 
@@ -13,4 +14,5 @@ public class CottageBlockPartResultDto
     public AreaUnit UsageAreaUnit { get; set; }
     public decimal Cost { get; set; }
     public Currency Currency { get; set; }
+    public CottageBlockResultDto CottageBlockResultDto { get; set; }
 }
