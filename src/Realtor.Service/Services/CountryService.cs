@@ -22,13 +22,13 @@ public class CountryService:ICountryService
     public async ValueTask<CountryResultDto> AddAsync(CountryCreationDto dto)
     {
         var existCountryByName = await _unitOfWork.CountryRepository
-            .SelectAsync(expression:country => country.Name.Equals(dto.Name, StringComparison.OrdinalIgnoreCase));
+            .SelectAsync(expression:country => country.Name.Equals(dto.Name));
         
         if (existCountryByName != null)
             throw new AlreadyExistsException(message: "Country Name is already taken!");
 
         var existCountryByCode = await _unitOfWork.CountryRepository
-            .SelectAsync(expression:country => country.Code.Equals(dto.Code, StringComparison.OrdinalIgnoreCase));
+            .SelectAsync(expression:country => country.Code.Equals(dto.Code));
 
         if (existCountryByCode != null)
             throw new AlreadyExistsException(message: "Country Code is already taken!");
@@ -43,8 +43,7 @@ public class CountryService:ICountryService
     public async ValueTask<CountryResultDto> ModifyAsync(CountryUpdateDto dto)
     {
         var existCountry =
-            await _unitOfWork.CountryRepository.SelectAsync(expression:country =>
-                country.IsDeleted == false && country.Id == dto.Id)
+            await _unitOfWork.CountryRepository.SelectAsync(expression:country => country.Id == dto.Id)
             ?? throw new NotFoundException(message: "Country is not found!");
 
         _mapper.Map(source:dto, destination:existCountry);
@@ -57,8 +56,7 @@ public class CountryService:ICountryService
     public async ValueTask<bool> RemoveAsync(long id)
     {
         var existCountry =
-            await _unitOfWork.CountryRepository.SelectAsync(expression:country =>
-                country.IsDeleted == false && country.Id == id)
+            await _unitOfWork.CountryRepository.SelectAsync(expression:country => country.Id == id)
             ?? throw new NotFoundException(message: "Country is not found!");
         
         _unitOfWork.CountryRepository.Delete(entity:existCountry);
@@ -70,7 +68,7 @@ public class CountryService:ICountryService
     public async ValueTask<bool> EraseAsync(long id)
     {
         var existCountry = await _unitOfWork.CountryRepository
-                               .SelectAsync(expression:country => country.IsDeleted == false && country.Id == id)
+            .SelectAsync(expression:country => country.Id == id)
                            ?? throw new NotFoundException(message: "Country is not found!");
         
         _unitOfWork.CountryRepository.Destroy(entity:existCountry);
@@ -82,7 +80,7 @@ public class CountryService:ICountryService
     public async ValueTask<CountryResultDto> RetrieveByIdAsync(long id)
     {
         var existCountry = await _unitOfWork.CountryRepository
-                               .SelectAsync(expression:country => country.IsDeleted == false && country.Id == id)
+            .SelectAsync(expression:country => country.Id == id)
                            ?? throw new NotFoundException(message: "Country is not found!");
 
         return _mapper.Map<CountryResultDto>(source:existCountry);
@@ -90,8 +88,7 @@ public class CountryService:ICountryService
     
     public async ValueTask<IEnumerable<CountryResultDto>> RetrieveAllAsync()
     {
-        var countries = await _unitOfWork.CountryRepository
-            .SelectAll(expression:country=>country.IsDeleted==false).ToListAsync();
+        var countries = await _unitOfWork.CountryRepository.SelectAll().ToListAsync();
 
         return _mapper.Map<IEnumerable<CountryResultDto>>(source:countries);
     }
