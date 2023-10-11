@@ -6,7 +6,7 @@ public interface ICottageService
 {
     ValueTask<CottageResultDto> AddAsync(CottageCreationDto dto);
     ValueTask<CottageResultDto> ModifyAsync(CottageUpdateDto dto);
-    ValueTask<bool> RemoveAsync(Guid id);
-    ValueTask<CottageResultDto> RetrieveByIdAsync(Guid id);
-    ValueTask<IEnumerable<CottageResultDto>> RetrieveAllByUserIdAsync(Guid userId);
+    ValueTask<bool> RemoveAsync(long id);
+    ValueTask<CottageResultDto> RetrieveByIdAsync(long id);
+    ValueTask<IEnumerable<CottageResultDto>> RetrieveAllByUserIdAsync(long userId);
 }
