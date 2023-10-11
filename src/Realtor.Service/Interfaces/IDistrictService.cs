@@ -6,8 +6,8 @@ public interface IDistrictService
 {
     ValueTask<DistrictResultDto> AddAsync(DistrictCreationDto dto);
     ValueTask<DistrictResultDto> ModifyAsync(DistrictUpdateDto dto);
-    ValueTask<bool> RemoveAsync(Guid id);
-    ValueTask<bool> EraseAsync(Guid id);
-    ValueTask<DistrictResultDto> RetrieveByIdAsync(Guid id);
+    ValueTask<bool> RemoveAsync(long id);
+    ValueTask<bool> EraseAsync(long id);
+    ValueTask<DistrictResultDto> RetrieveByIdAsync(long id);
     ValueTask<IEnumerable<DistrictResultDto>> RetrieveAllAsync();
 }
