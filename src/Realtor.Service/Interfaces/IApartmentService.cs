@@ -6,7 +6,7 @@ public interface IApartmentService
 {
     ValueTask<ApartmentResultDto> AddAsync(ApartmentCreationDto dto);
     ValueTask<ApartmentResultDto> ModifyAsync(ApartmentUpdateDto dto);
-    ValueTask<bool> RemoveAsync(Guid id);
-    ValueTask<ApartmentResultDto> RetrieveByIdAsync(Guid id);
-    ValueTask<IEnumerable<ApartmentResultDto>> RetrieveAllByUserIdAsync(Guid userId);
+    ValueTask<bool> RemoveAsync(long id);
+    ValueTask<ApartmentResultDto> RetrieveByIdAsync(long id);
+    ValueTask<IEnumerable<ApartmentResultDto>> RetrieveAllByUserIdAsync(long userId);
 }
