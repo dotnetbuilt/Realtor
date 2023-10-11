@@ -41,7 +41,7 @@ public class UserService:IUserService
     public async ValueTask<UserResultDto> ModifyAsync(UserUpdateDto dto)
     {
         var existUser = await _unitOfWork.UserRepository
-                            .SelectAsync(expression:user => user.Id == dto.Id && user.IsDeleted == false)
+                            .SelectAsync(expression:user => user.Id == dto.Id)
                         ?? throw new NotFoundException(message: "User is not found!");
 
         _mapper.Map(source:dto, destination:existUser);
@@ -55,7 +55,7 @@ public class UserService:IUserService
     public async ValueTask<bool> RemoveAsync(long id)
     {
         var existUser = await _unitOfWork.UserRepository
-                            .SelectAsync(expression:user => user.Id == id && user.IsDeleted == false)
+                            .SelectAsync(expression:user => user.Id == id)
                         ?? throw new NotFoundException(message: "User is not found!");
 
         _unitOfWork.UserRepository.Delete(entity:existUser);
@@ -67,7 +67,7 @@ public class UserService:IUserService
     public async ValueTask<bool> EraseAsync(long id)
     {
         var existUser = await _unitOfWork.UserRepository
-                            .SelectAsync(expression:user => user.Id == id && user.IsDeleted == false)
+                            .SelectAsync(expression:user => user.Id == id)
                         ?? throw new NotFoundException(message: "User is not found!");
         
         _unitOfWork.UserRepository.Destroy(existUser);
@@ -79,7 +79,7 @@ public class UserService:IUserService
     public async ValueTask<UserResultDto> RetrieveByIdAsync(long id)
     {
         var existUser = await _unitOfWork.UserRepository
-                            .SelectAsync(expression:user => user.Id == id && user.IsDeleted == false)
+                            .SelectAsync(expression:user => user.Id == id)
                         ?? throw new NotFoundException(message: "User is not found!");
 
         return _mapper.Map<UserResultDto>(source: existUser);
@@ -88,7 +88,7 @@ public class UserService:IUserService
     public async ValueTask<IEnumerable<UserResultDto>> RetrieveAllAsync(PaginationParams @params)
     {
         var users = await _unitOfWork.UserRepository
-            .SelectAll(expression:user => user.IsDeleted == false).ToPaginate(@params).ToListAsync();
+            .SelectAll().ToPaginate(@params).ToListAsync();
 
         return _mapper.Map<IEnumerable<UserResultDto>>(source: users);
     }
@@ -99,7 +99,7 @@ public class UserService:IUserService
     public async ValueTask<bool> ChangePasswordAsync(long userId, string currentPassword, string newPassword)
     {
         var user = await _unitOfWork.UserRepository
-            .SelectAsync(expression: user => user.IsDeleted == false && user.Id == userId) 
+            .SelectAsync(expression: user => user.Id == userId) 
                    ?? throw new NotFoundException(message: "User is not found");
 
         if (!currentPassword.Verify(user.Password))
