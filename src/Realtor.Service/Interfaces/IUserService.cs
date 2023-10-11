@@ -7,10 +7,10 @@ public interface IUserService
 {
         ValueTask<UserResultDto> AddAsync(UserCreationDto dto);
         ValueTask<UserResultDto> ModifyAsync(UserUpdateDto dto);
-        ValueTask<bool> RemoveAsync(Guid id);
-        ValueTask<bool> EraseAsync(Guid id);
-        ValueTask<UserResultDto> RetrieveByIdAsync(Guid id);
+        ValueTask<bool> RemoveAsync(long id);
+        ValueTask<bool> EraseAsync(long id);
+        ValueTask<UserResultDto> RetrieveByIdAsync(long id);
         ValueTask<IEnumerable<UserResultDto>> RetrieveAllAsync(PaginationParams @params);
         ValueTask<long> RetrieveNumberOfActiveUsers();
-        ValueTask<bool> ChangePasswordAsync(Guid userId, string currentPassword, string newPassword);
+        ValueTask<bool> ChangePasswordAsync(long userId, string currentPassword, string newPassword);
 }
