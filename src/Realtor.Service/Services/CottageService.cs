@@ -21,7 +21,26 @@ public class CottageService:ICottageService
 
     public async ValueTask<CottageResultDto> AddAsync(CottageCreationDto dto)
     {
+        var existProperty =
+            await _unitOfWork.PropertyRepository.SelectAsync(expression: property => property.Id == dto.PropertyId) ??
+            throw new NotFoundException(message: "Property is not found");
+        
+        var existUser = await _unitOfWork.UserRepository.SelectAsync(expression: user => user.Id == dto.UserId) ??
+                        throw new NotFoundException(message: "User is not found");
+
+        var existAddress =
+            await _unitOfWork.AddressRepository.SelectAsync(expression: address => address.Id == dto.AddressId) ??
+            throw new NotFoundException(message: "Address is not found");
+        
         var mappedCottage = _mapper.Map<Cottage>(source: dto);
+        mappedCottage.UserId = existUser.Id;
+        mappedCottage.User = existUser;
+        mappedCottage.AddressId = existAddress.Id;
+        mappedCottage.Address = existAddress;
+        mappedCottage.PropertyId = existProperty.Id;
+        mappedCottage.Property = existProperty;
+        mappedCottage.AttachmentId = null;
+        mappedCottage.Attachment = null;
 
         await _unitOfWork.CottageRepository.CreateAsync(entity: mappedCottage);
         await _unitOfWork.SaveAsync();
@@ -32,7 +51,8 @@ public class CottageService:ICottageService
     public async ValueTask<CottageResultDto> ModifyAsync(CottageUpdateDto dto)
     {
         var existCottage =
-            await _unitOfWork.CottageRepository.SelectAsync(cottage => cottage.Id == dto.Id);
+            await _unitOfWork.CottageRepository.SelectAsync(expression:cottage => cottage.Id == dto.Id,
+                includes:new [] {"Property","User","Address"});
 
         if (existCottage == null)
             throw new NotFoundException(message: "Cottage is not found");
@@ -48,7 +68,8 @@ public class CottageService:ICottageService
     public async ValueTask<bool> RemoveAsync(long id)
     {
         var existCottage =
-            await _unitOfWork.CottageRepository.SelectAsync(expression:cottage => cottage.Id ==id);
+            await _unitOfWork.CottageRepository.SelectAsync(expression:cottage => cottage.Id ==id,
+                includes:new[]{"Property","User","Address"});
 
         if (existCottage == null)
             throw new NotFoundException(message: "Cottage is not found");
@@ -62,7 +83,8 @@ public class CottageService:ICottageService
     public async ValueTask<CottageResultDto> RetrieveByIdAsync(long id)
     {
         var existCottage =
-            await _unitOfWork.CottageRepository.SelectAsync(expression:cottage => cottage.Id ==id);
+            await _unitOfWork.CottageRepository.SelectAsync(expression:cottage => cottage.Id ==id,
+                includes:new[]{"Property","User","Address"});
 
         if (existCottage == null)
             throw new NotFoundException(message: "Cottage is not found");
@@ -73,7 +95,8 @@ public class CottageService:ICottageService
     public async ValueTask<IEnumerable<CottageResultDto>> RetrieveAllByUserIdAsync(long userId)
     {
         var cottages = await _unitOfWork.CottageRepository
-            .SelectAll(cottage => cottage.UserId == userId)
+            .SelectAll(cottage => cottage.UserId == userId,
+                includes:new[]{"Property","User","Address"})
             .ToListAsync();
 
         return _mapper.Map<IEnumerable<CottageResultDto>>(source: cottages);

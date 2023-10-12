@@ -21,7 +21,26 @@ public class CottageBlockService:ICottageBlockService
 
     public async ValueTask<CottageBlockResultDto> AddAsync(CottageBlockCreationDto dto)
     {
+        var existProperty =
+            await _unitOfWork.PropertyRepository.SelectAsync(expression: property => property.Id == dto.PropertyId) ??
+            throw new NotFoundException(message: "Property is not found");
+
+        var existUser = await _unitOfWork.UserRepository.SelectAsync(expression: user => user.Id == dto.UserId) ??
+                        throw new NotFoundException(message: "User is not found");
+
+        var existAddress =
+            await _unitOfWork.AddressRepository.SelectAsync(expression: address => address.Id == dto.AddressId) ??
+            throw new NotFoundException(message: "Address is not found");
+        
         var mappedBlock = _mapper.Map<CottageBlock>(source: dto);
+        mappedBlock.PropertyId = existProperty.Id;
+        mappedBlock.Property = existProperty;
+        mappedBlock.UserId = existUser.Id;
+        mappedBlock.User = existUser;
+        mappedBlock.AddressId = existAddress.Id;
+        mappedBlock.Address = existAddress;
+        mappedBlock.AttachmentId = null;
+        mappedBlock.Attachment = null;
 
         await _unitOfWork.CottageBlockRepository.CreateAsync(entity: mappedBlock);
         await _unitOfWork.SaveAsync();
