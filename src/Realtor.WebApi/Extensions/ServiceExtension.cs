@@ -17,7 +17,6 @@ public static class ServiceExtension
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped<IUserService, UserService>();
-        services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IAddressService, AddressService>();
         services.AddScoped<ICountryService, CountryService>();
         services.AddScoped<IRegionService, RegionService>();

@@ -35,7 +35,7 @@ public class NeighborhoodService : INeighborhoodService
                                 .SelectAsync(expression: district => district.Id == dto.DistrictId &&
                                                                      district.RegionId == dto.RegionId &&
                                                                      district.CountryId == dto.CountryId,
-                                    includes: new[] { "Region.Country" })
+                                    includes: new[] { "Region.Country" ,"Country"})
                             ?? throw new NotFoundException(message: "DistrictNotFound");
 
         var existNeighborhood = await _unitOfWork.NeighborhoodRepository.SelectAsync(
@@ -43,7 +43,7 @@ public class NeighborhoodService : INeighborhoodService
                                         neighborhood.DistrictId == dto.DistrictId &&
                                         neighborhood.RegionId == dto.RegionId &&
                                         neighborhood.CountryId == dto.CountryId,
-            includes: new[] { "District.Region.Country" });
+            includes: new[] { "District.Region.Country" ,"Region.Country","Country"});
 
         if (existNeighborhood != null)
             throw new AlreadyExistsException(message: "NeighborhoodAlreadyExists");
@@ -63,7 +63,7 @@ public class NeighborhoodService : INeighborhoodService
     {
         var existNeighborhood = await _unitOfWork.NeighborhoodRepository
                                     .SelectAsync(expression: neighborhood => neighborhood.Id == dto.Id,
-                                        includes: new[] { "District.Region.Country" })
+                                        includes: new[] { "District.Region.Country","Region.Country","Country" })
                                 ?? throw new NotFoundException(message: "NeighborhoodNotFound");
 
         _mapper.Map(source: dto, destination: existNeighborhood);
@@ -78,7 +78,7 @@ public class NeighborhoodService : INeighborhoodService
     {
         var existNeighborhood = await _unitOfWork.NeighborhoodRepository
                                     .SelectAsync(expression: neighborhood => neighborhood.Id == id,
-                                        includes: new[] { "District.Region.Country" })
+                                        includes: new[] { "District.Region.Country" ,"Region.Country","Country"})
                                 ?? throw new NotFoundException(message: "NeighborhoodNotFound");
 
         _unitOfWork.NeighborhoodRepository.Delete(entity: existNeighborhood);
@@ -91,7 +91,7 @@ public class NeighborhoodService : INeighborhoodService
     {
         var existNeighborhood = await _unitOfWork.NeighborhoodRepository
                                     .SelectAsync(expression: neighborhood => neighborhood.Id == id,
-                                        includes: new[] { "District.Region.Country" })
+                                        includes: new[] { "District.Region.Country" , "Region.Country", "Country"})
                                 ?? throw new NotFoundException(message: "NeighborhoodNotFound");
 
         _unitOfWork.NeighborhoodRepository.Destroy(entity: existNeighborhood);
@@ -104,7 +104,7 @@ public class NeighborhoodService : INeighborhoodService
     {
         var existNeighborhood = await _unitOfWork.NeighborhoodRepository
                                     .SelectAsync(expression: neighborhood => neighborhood.Id == id,
-                                        includes: new[] { "District.Region.Country" })
+                                        includes: new[] { "District.Region.Country" , "Region.Country", "Country"})
                                 ?? throw new NotFoundException(message: "NeighborhoodNotFound");
 
         return _mapper.Map<NeighborhoodResultDto>(source: existNeighborhood);
@@ -113,7 +113,7 @@ public class NeighborhoodService : INeighborhoodService
     public async ValueTask<IEnumerable<NeighborhoodResultDto>> RetrieveAllAsync()
     {
         var neighborhoods = await _unitOfWork.NeighborhoodRepository
-            .SelectAll(includes: new[] { "District.Region.Country" })
+            .SelectAll(includes: new[] { "District.Region.Country" , "Region.Country", "Country"})
             .ToListAsync();
 
         return _mapper.Map<IEnumerable<NeighborhoodResultDto>>(source: neighborhoods);

@@ -18,12 +18,15 @@ public class UsersController:BaseController
 
     [HttpPost("register")]
     public async ValueTask<IActionResult> CreateAsync(UserCreationDto dto)
-        => Ok(new Responce()
+    {
+        Console.WriteLine("Qovun");
+        return Ok(new Responce()
         {
             StatusCode = 200,
             Message = "Success",
             Data = await _service.AddAsync(dto)
         });
+    }
     
     
     [HttpPut("update")]

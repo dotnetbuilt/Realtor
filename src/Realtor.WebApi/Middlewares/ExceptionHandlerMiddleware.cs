@@ -18,7 +18,7 @@ public class ExceptionHandlerMiddleware
     {
         try
         {
-            _request.Invoke(context);
+            await _request.Invoke(context);
         }
         catch (NotFoundException exception)
         {

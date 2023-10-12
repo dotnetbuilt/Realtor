@@ -26,8 +26,7 @@ public class DistrictService:IDistrictService
                            ?? throw new NotFoundException(message: "Country is not found!");
 
         var existRegion = await _unitOfWork.RegionRepository
-                              .SelectAsync(expression:region => region.Id == dto.RegionId,
-                                  includes:new[]{"Region.Country"})
+                              .SelectAsync(expression:region => region.Id == dto.RegionId)
                           ?? throw new NotFoundException(message: "Region is not found!");
 
         var existDistrict = await _unitOfWork.DistrictRepository
@@ -35,7 +34,7 @@ public class DistrictService:IDistrictService
                 includes:new[]{"Region.Country"});
 
         if (existDistrict != null)
-            throw new AlreadyExistsException(message: "Region Name is already taken!");
+            throw new AlreadyExistsException(message: "District is already taken!");
 
         var mappedDistrict = _mapper.Map<District>(source:dto);
         mappedDistrict.Country = existCountry;
@@ -50,7 +49,7 @@ public class DistrictService:IDistrictService
     public async ValueTask<DistrictResultDto> ModifyAsync(DistrictUpdateDto dto)
     {
         var existDistrict = await _unitOfWork.DistrictRepository
-                                .SelectAsync(expression:district => district.Id == dto.Id,includes:new[]{"Region.Country"})
+                                .SelectAsync(expression:district => district.Id == dto.Id,includes:new[]{"Region.Country","Country"})
                             ?? throw new NotFoundException(message: "District is not found!");
 
         _mapper.Map(source:dto,destination: existDistrict);
@@ -65,7 +64,7 @@ public class DistrictService:IDistrictService
     {
         var existDistrict = await _unitOfWork.DistrictRepository
                                 .SelectAsync(expression:district => district.Id == id,
-                                    includes:new[]{"Region.Country"})
+                                    includes:new[]{"Region.Country","Country"})
                             ?? throw new NotFoundException(message: "District is not found!");
         
         _unitOfWork.DistrictRepository.Delete(entity:existDistrict);
@@ -78,7 +77,7 @@ public class DistrictService:IDistrictService
     {
         var existDistrict = await _unitOfWork.DistrictRepository
                                 .SelectAsync(expression:district => district.Id == id ,
-                                    includes:new[]{"Region.Country"})
+                                    includes:new[]{"Region.Country","Country"})
                             ?? throw new NotFoundException(message: "District is not found!");
         
         _unitOfWork.DistrictRepository.Destroy(entity:existDistrict);
@@ -91,7 +90,7 @@ public class DistrictService:IDistrictService
     {
         var existDistrict = await _unitOfWork.DistrictRepository
                                 .SelectAsync(expression:district => district.Id == id ,
-                                    includes:new[]{"Region.Country"})
+                                    includes:new[]{"Region.Country","Country"})
                             ?? throw new NotFoundException(message: "District is not found!");
 
         return _mapper.Map<DistrictResultDto>(source:existDistrict);
@@ -100,7 +99,7 @@ public class DistrictService:IDistrictService
     public async ValueTask<IEnumerable<DistrictResultDto>> RetrieveAllAsync()
     {
         var districts = await _unitOfWork.DistrictRepository
-            .SelectAll(includes:new[]{"Region.Country"})
+            .SelectAll(includes:new[]{"Region.Country","Country"})
             .ToListAsync();
 
         return _mapper.Map<IEnumerable<DistrictResultDto>>(source:districts);

@@ -4,7 +4,7 @@ using Realtor.Service.DTOs.Users;
 namespace Realtor.Service.Interfaces;
 
 public interface IUserService
-{
+{     
         ValueTask<UserResultDto> AddAsync(UserCreationDto dto);
         ValueTask<UserResultDto> ModifyAsync(UserUpdateDto dto);
         ValueTask<bool> RemoveAsync(long id);

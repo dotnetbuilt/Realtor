@@ -20,6 +20,9 @@ builder.Services.AddDbContext<RealtorDbContext>(options =>
 //JWT
 builder.Services.AddJwt(builder.Configuration);
 
+//Custom Services
+builder.Services.AddCustomServices();
+
 // //Swagger Setup
 // builder.Services.ConfigureSwagger();
 
@@ -41,6 +44,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
