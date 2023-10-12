@@ -42,6 +42,14 @@ public class AddressService:IAddressService
                                 ?? throw new NotFoundException(message: "NeighborhoodNotFound");
 
         var mappedAddress = _mapper.Map<Address>(source: dto);
+        mappedAddress.CountryId = existCountry.Id;
+        mappedAddress.Country = existCountry;
+        mappedAddress.RegionId = existRegion.Id;
+        mappedAddress.Region = existRegion;
+        mappedAddress.DistrictId = existDistrict.Id;
+        mappedAddress.District = existDistrict;
+        mappedAddress.NeighborhoodId = existNeighborhood.Id;
+        mappedAddress.Neighborhood = existNeighborhood;
 
         await _unitOfWork.AddressRepository.CreateAsync(entity: mappedAddress);
         await _unitOfWork.SaveAsync();
@@ -52,7 +60,8 @@ public class AddressService:IAddressService
     public async ValueTask<AddressResultDto> ModifyAsync(AddressUpdateDto dto)
     {
         var existAddress = await _unitOfWork.AddressRepository.SelectAsync(expression: address => address.Id == dto.Id,
-                               includes: new[] { "Neighborhood.District.Region.Country","District.Region.Country","Region.Country","Country" })
+            includes: new[] 
+                { "Neighborhood.District.Region.Country","District.Region.Country","Region.Country","Country" })
                            ?? throw new NotFoundException(message: "AddressNotFound");
 
         _mapper.Map(source: dto, destination: existAddress);
@@ -66,7 +75,8 @@ public class AddressService:IAddressService
     public async ValueTask<bool> RemoveAsync(long id)
     {
         var existAddress = await _unitOfWork.AddressRepository.SelectAsync(expression: address => address.Id == id,
-                               includes: new[] { "Neighborhood.District.Region.Country","District.Region.Country","Region.Country","Country" })
+            includes: new[] 
+                { "Neighborhood.District.Region.Country","District.Region.Country","Region.Country","Country" })
                            ?? throw new NotFoundException(message: "AddressNotFound");
         
         _unitOfWork.AddressRepository.Delete(entity:existAddress);
@@ -90,7 +100,8 @@ public class AddressService:IAddressService
     public async ValueTask<AddressResultDto> RetrieveByIdAsync(long id)
     {
         var existAddress = await _unitOfWork.AddressRepository.SelectAsync(expression: address => address.Id == id,
-                               includes: new[] { "Neighborhood.District.Region.Country" ,"District.Region.Country","Region.Country","Country"})
+            includes: new[]
+                { "Neighborhood.District.Region.Country" ,"District.Region.Country","Region.Country","Country"})
                            ?? throw new NotFoundException(message: "AddressNotFound");
 
         return _mapper.Map<AddressResultDto>(source: existAddress);
@@ -98,9 +109,7 @@ public class AddressService:IAddressService
 
     public async ValueTask<IEnumerable<AddressResultDto>> RetrieveAllAsync()
     {
-        var addresses = await _unitOfWork.AddressRepository
-            .SelectAll(expression: address => address.IsDeleted == false)
-            .ToListAsync();
+        var addresses = await _unitOfWork.AddressRepository.SelectAll().ToListAsync();
 
         return _mapper.Map<IEnumerable<AddressResultDto>>(addresses);
     }

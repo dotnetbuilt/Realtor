@@ -8,7 +8,7 @@ public class NeighborhoodResultDto
 {
     public long Id { get; set; }
     public string Name { get; set; }
-    public CountryResultDto CountryResultDto { get; set; }
-    public RegionResultDto RegionResultDto { get; set; }
-    public DistrictResultDto DistrictResultDto { get; set; }
+    public CountryResultDto Country { get; set; }
+    public RegionResultDto Region { get; set; }
+    public DistrictResultDto District { get; set; }
 }
