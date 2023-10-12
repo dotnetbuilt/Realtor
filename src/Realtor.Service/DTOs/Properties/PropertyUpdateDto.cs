@@ -10,6 +10,4 @@ public class PropertyUpdateDto
     public RealEstateType RealEstateType { get; set; }
     public int CeilingHeight { get; set; }
     public Material WallMadeOf { get; set; }
-    public DateOnly BuiltIn { get; set; }
-    public DateOnly SubmissionDate { get; set; }
 }
