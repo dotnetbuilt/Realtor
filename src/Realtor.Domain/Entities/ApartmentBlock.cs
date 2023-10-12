@@ -9,8 +9,8 @@ public class ApartmentBlock:Auditable
     public int NumberOfFloors { get; set; }
     public ICollection<ApartmentBlockPart> ApartmentBlockParts { get; set; }
 
-    public long AttachmentId { get; set; }
-    public Attachment Attachment { get; set; }
+    public long? AttachmentId { get; set; }
+    public Attachment? Attachment { get; set; }
 
     public long AddressId { get; set; }
     public Address Address { get; set; }

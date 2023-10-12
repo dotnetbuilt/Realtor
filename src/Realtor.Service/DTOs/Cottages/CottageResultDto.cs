@@ -18,7 +18,7 @@ public class CottageResultDto
     public AreaUnit TotalAreaUnit { get; set; }
     public long UsageArea { get; set; }
     public AreaUnit UsageAreaUnit { get; set; }
-    public ICollection<Attachment> Attachments { get; set; }
+    public Attachment Attachment { get; set; }
     public UserResultDto UserResultDto { get; set; }
     public AddressResultDto AddressResultDto { get; set; }
 }

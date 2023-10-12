@@ -15,7 +15,7 @@ public class ApartmentResultDto
     public int NumberOfRooms { get; set; }
     public int UsageArea { get; set; }
     public AreaUnit UsageAreaUnit { get; set; }
-    public ICollection<Attachment> Attachments { get; set; }
-    public UserResultDto UserProfileResultDto { get; set; }
+    public Attachment? Attachment { get; set; }
+    public UserResultDto UserResultDto { get; set; }
     public AddressResultDto AddressResultDto { get; set; }
 }

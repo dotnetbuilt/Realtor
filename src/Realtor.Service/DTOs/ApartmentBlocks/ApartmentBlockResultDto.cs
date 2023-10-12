@@ -11,8 +11,8 @@ public class ApartmentBlockResultDto
     public long Id { get; set; }
     public PropertyResultDto PropertyResultDto { get; set; }
     public int NumberOfFloors { get; set; }
-    public ICollection<Attachment> Attachments { get; set; }
     public ICollection<ApartmentBlockPartResultDto> ApartmentBlockParts { get; set; }
+    public Attachment? Attachment { get; set; }
     public AddressResultDto AddressResultDto { get; set; }
     public UserResultDto UserResultDto { get; set; }
 }

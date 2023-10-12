@@ -15,7 +15,7 @@ public class CottageUpdateDto
     public AreaUnit TotalAreaUnit { get; set; }
     public long UsageArea { get; set; }
     public AreaUnit UsageAreaUnit { get; set; }
-    public ICollection<Attachment> Attachments { get; set; }
+    public long? AttachmentId { get; set; }
     public long UserId { get; set; }
     public long AddressId { get; set; }
 }

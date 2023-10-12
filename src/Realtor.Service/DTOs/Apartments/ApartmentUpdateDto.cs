@@ -12,7 +12,7 @@ public class ApartmentUpdateDto
     public int NumberOfRooms { get; set; }
     public int UsageArea { get; set; }
     public AreaUnit UsageAreaUnit { get; set; }
-    public ICollection<Attachment> Attachments { get; set; }
+    public long? AttachmentId { get; set; }
     public long UserId { get; set; }
     public long AddressId { get; set; }
 }

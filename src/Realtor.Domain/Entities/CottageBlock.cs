@@ -9,8 +9,8 @@ public class CottageBlock:Auditable
 
     public ICollection<CottageBlockPart> CottageBlockParts { get; set; }
 
-    public long AttachmentId { get; set; }
-    public Attachment Attachment { get; set; }
+    public long? AttachmentId { get; set; }
+    public Attachment? Attachment { get; set; }
     
     public long AddressId { get; set; }
     public Address Address { get; set; }
