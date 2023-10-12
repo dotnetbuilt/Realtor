@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Realtor.Data.Contexts;
@@ -11,9 +12,11 @@ using Realtor.Data.Contexts;
 namespace Realtor.Data.Migrations
 {
     [DbContext(typeof(RealtorDbContext))]
-    partial class RealtorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231012124120_ModifyPropertyInPropertyEntity")]
+    partial class ModifyPropertyInPropertyEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
