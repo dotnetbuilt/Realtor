@@ -109,7 +109,9 @@ public class AddressService:IAddressService
 
     public async ValueTask<IEnumerable<AddressResultDto>> RetrieveAllAsync()
     {
-        var addresses = await _unitOfWork.AddressRepository.SelectAll().ToListAsync();
+        var addresses = await _unitOfWork.AddressRepository.SelectAll(
+            includes:new[]{"Neighborhood.District.Region.Country" ,"District.Region.Country","Region.Country","Country"})
+            .ToListAsync();
 
         return _mapper.Map<IEnumerable<AddressResultDto>>(addresses);
     }
