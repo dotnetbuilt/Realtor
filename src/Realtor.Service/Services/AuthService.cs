@@ -29,7 +29,7 @@ public class AuthService:IAuthService
         var user = await _unitOfWork.UserRepository.SelectAsync(expression: u => u.PhoneNumber == phoneNumber)
                    ?? throw new NotFoundException(message: "UserNotFound");
 
-        var isPasswordVerified = password.Verify(user.Password);
+        var isPasswordVerified = PasswordHasher.Verify(password, user.Password);
         if (!isPasswordVerified)
             throw new CustomException(statuscode: 400, message: "Password is invalid");
 

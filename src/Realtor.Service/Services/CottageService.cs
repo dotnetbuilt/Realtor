@@ -39,8 +39,6 @@ public class CottageService:ICottageService
         mappedCottage.Address = existAddress;
         mappedCottage.PropertyId = existProperty.Id;
         mappedCottage.Property = existProperty;
-        mappedCottage.AttachmentId = null;
-        mappedCottage.Attachment = null;
 
         await _unitOfWork.CottageRepository.CreateAsync(entity: mappedCottage);
         await _unitOfWork.SaveAsync();

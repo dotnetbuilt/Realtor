@@ -30,7 +30,7 @@ public class UserService:IUserService
             throw new AlreadyExistsException(message: "User is Already exist!");
 
         var mappedUser = _mapper.Map<User>(source:dto);
-        mappedUser.Password.Hash();
+        mappedUser.Password = PasswordHasher.Hash(dto.Password);
 
         await _unitOfWork.UserRepository.CreateAsync(entity: mappedUser);
         await _unitOfWork.SaveAsync();
@@ -102,10 +102,10 @@ public class UserService:IUserService
             .SelectAsync(expression: user => user.Id == userId) 
                    ?? throw new NotFoundException(message: "User is not found");
 
-        if (!currentPassword.Verify(user.Password))
+        if (!PasswordHasher.Verify(password:currentPassword,hashedPassword:user.Password))
             throw new CustomException(statuscode:403,message: "Password is invalid");
 
-        user.Password = newPassword.Hash();
+        user.Password = PasswordHasher.Hash(newPassword);
         await _unitOfWork.SaveAsync();
 
         return true;
