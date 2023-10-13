@@ -1,4 +1,3 @@
-using Realtor.Domain.Entities;
 using Realtor.Service.DTOs.ApartmentBlockParts;
 
 namespace Realtor.Service.DTOs.ApartmentBlocks;

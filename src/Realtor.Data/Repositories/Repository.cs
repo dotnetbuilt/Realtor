@@ -46,7 +46,8 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditabl
         if(includes!=null)
             foreach (var include in includes)
                 entities = entities.Include(include);
-
+            
+        
         return await entities.Where(entity => !entity.IsDeleted).FirstOrDefaultAsync();
     }
     

@@ -49,4 +49,13 @@ public class CottageBlocksController:BaseController
             Message = "Ok",
             Data = await _service.RetrieveByIdAsync(id)
         });
+
+    [HttpGet("get-all-by-userId")]
+    public async ValueTask<IActionResult> GetAllByUserIdAsync(long userId)
+        => Ok(new Responce()
+        {
+            StatusCode = 200,
+            Message = "Ok",
+            Data = await _service.RetrieveAllByUserIdAsync(userId)
+        });
 }

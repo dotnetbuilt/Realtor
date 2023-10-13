@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Realtor.Domain.Configurations;
 using Realtor.Service.DTOs.Users;

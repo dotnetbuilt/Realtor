@@ -1,4 +1,3 @@
-using Realtor.Domain.Entities;
 using Realtor.Domain.Enums;
 
 namespace Realtor.Service.DTOs.Cottages;

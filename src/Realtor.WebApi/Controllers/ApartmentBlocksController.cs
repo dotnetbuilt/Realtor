@@ -56,6 +56,6 @@ public class ApartmentBlocksController : BaseController
         {
             StatusCode = 200,
             Message = "Ok",
-            Data = await _service.RetrieveByIdAsync(userId)
+            Data = await _service.RetrieveAllByUserIdAsync(userId)
         });
 }

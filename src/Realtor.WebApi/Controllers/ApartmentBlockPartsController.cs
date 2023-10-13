@@ -38,7 +38,7 @@ public class ApartmentBlockPartsController : BaseController
         {
             StatusCode = 200,
             Message = "Ok",
-            Data = await _service.RetrieveByIdAsync(id)
+            Data = await _service.RemoveAsync(id)
         });
 
     [HttpGet("get-by-id")]
