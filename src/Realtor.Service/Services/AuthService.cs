@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Realtor.Data.Contracts;
 using Realtor.Service.Exceptions;
-using Realtor.Service.Extensions;
+using Realtor.Service.Helpers;
 using Realtor.Service.Interfaces;
 
 namespace Realtor.Service.Services;

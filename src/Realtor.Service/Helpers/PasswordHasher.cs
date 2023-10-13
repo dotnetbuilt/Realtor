@@ -1,4 +1,4 @@
-namespace Realtor.Service.Extensions;
+namespace Realtor.Service.Helpers;
 
 public static class PasswordHasher
 {
