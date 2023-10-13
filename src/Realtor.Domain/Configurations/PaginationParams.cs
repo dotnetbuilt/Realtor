@@ -2,14 +2,14 @@ namespace Realtor.Domain.Configurations;
 
 public class PaginationParams
 {
-    private int pageSize;
-    private const int maxSize = 20;
+    private int _pageSize;
+    private const int MaxSize = 20;
 
     public int PageSize
     {
-        get => pageSize == 0 ? maxSize : pageSize;
-        set { pageSize = value > maxSize ? maxSize : value; }
+        get => _pageSize == 0 ? MaxSize : _pageSize;
+        set { _pageSize = value > MaxSize ? MaxSize : value; }
     }
 
-    public int PageIndex { get; set; } = 1;
+    public int PageIndex{get;set;} = 1;
 }

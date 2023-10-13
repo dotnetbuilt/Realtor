@@ -41,7 +41,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditabl
 
     public async ValueTask<TEntity> SelectAsync(Expression<Func<TEntity, bool>> expression, string[] includes = null)
     {
-        IQueryable<TEntity> entities = _dbSet.Where(expression).AsQueryable();
+        var entities = _dbSet.Where(expression).AsQueryable();
 
         if(includes!=null)
             foreach (var include in includes)
@@ -53,7 +53,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditabl
     
     public IQueryable<TEntity> SelectAll(Expression<Func<TEntity, bool>> expression = null, string[] includes = null, bool isTracking = true)
     {
-        IQueryable<TEntity> entities = expression == null 
+        var entities = expression == null 
             ? _dbSet.AsQueryable() 
             : _dbSet.Where(expression).AsQueryable();
 

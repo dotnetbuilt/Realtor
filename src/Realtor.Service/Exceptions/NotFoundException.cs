@@ -2,7 +2,7 @@ namespace Realtor.Service.Exceptions;
 
 public class NotFoundException:Exception
 {
-    public int StatusCode { get; set; } = 404;
+    public int StatusCode { get; } = 404;
 
     public NotFoundException(string message):base(message)
     { }

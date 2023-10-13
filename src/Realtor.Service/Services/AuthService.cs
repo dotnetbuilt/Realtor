@@ -29,7 +29,7 @@ public class AuthService:IAuthService
         var user = await _unitOfWork.UserRepository.SelectAsync(expression: u => u.PhoneNumber == phoneNumber)
                    ?? throw new NotFoundException(message: "UserNotFound");
 
-        bool isPasswordVerified = password.Verify(user.Password);
+        var isPasswordVerified = password.Verify(user.Password);
         if (!isPasswordVerified)
             throw new CustomException(statuscode: 400, message: "Password is invalid");
 
@@ -50,7 +50,7 @@ public class AuthService:IAuthService
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
 
-        string result = tokenHandler.WriteToken(token);
+        var result = tokenHandler.WriteToken(token);
 
         _memoryCache.Set(user.Id.ToString(), result, TimeSpan.FromDays(1));
 
